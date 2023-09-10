@@ -37,5 +37,15 @@ export const getTodosGroupedByColumn = async () => {
     }
   }
 
-  
+  const soretedColumns = new Map(
+    Array.from(columns.entries()).sort(
+      (a, b) => cloumnTypes.indexOf(a[0]) - cloumnTypes.indexOf(b[0])
+    )
+  );
+
+  const board: Board = {
+    columns: soretedColumns,
+  };
+
+  return board;
 };
