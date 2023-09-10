@@ -6,9 +6,10 @@ import { useBoardStore } from "@/store/BoardStore";
 import Column from "./Column";
 
 function Board() {
-  const [board, getBoard] = useBoardStore((state) => [
+  const [board, getBoard, setBoardState] = useBoardStore((state) => [
     state.board,
     state.getBoard,
+    state.setBoardState,
   ]);
   //   const board = useBoardStore((state) => state.board);
 
@@ -16,10 +17,25 @@ function Board() {
     getBoard();
   }, [getBoard]);
 
-//   console.log(board);
-const handleOnDragEnd = (result: DropResult) => {
+  //   console.log(board);
+  const handleOnDragEnd = (result: DropResult) => {
+    const { destination, source, type } = result;
 
-}
+    // console.log(result);
+
+    if (!destination) return;
+
+    if (type === "column") {
+      const entries = Array.from(board.columns.entries());
+      const [removed] = entries.splice(source.index, 1);
+      entries.splice(destination.index, 0, removed);
+      const rearrangedColumns = new Map(entries);
+
+      setBoardState({ ...board, columns: rearrangedColumns });
+    }
+
+    
+  };
   return (
     // <h1>hllo</h1>
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -33,6 +49,7 @@ const handleOnDragEnd = (result: DropResult) => {
             {Array.from(board.columns.entries()).map(([id, column], index) => (
               <Column key={id} id={id} todos={column.todos} index={index} />
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
