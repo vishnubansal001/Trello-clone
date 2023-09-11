@@ -9,7 +9,7 @@ import {
 } from "react-beautiful-dnd";
 
 type Props = {
-  todo: Todo;
+  todo: Todo;                                             
   index: number;
   id: TypedColumn;
   innerRef: (element: HTMLElement | null) => void;
