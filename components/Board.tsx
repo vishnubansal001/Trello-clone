@@ -6,17 +6,14 @@ import Column from "./Column";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 
 function Board() {
-  const [
-    board,
-    getBoard,
-    setBoardState,
-    // , updateTodoInDB
-  ] = useBoardStore((state) => [
-    state.board,
-    state.getBoard,
-    state.setBoardState,
-    // state.updateTodoInDB
-  ]);
+  const [board, getBoard, setBoardState, updateTodoInDB] = useBoardStore(
+    (state) => [
+      state.board,
+      state.getBoard,
+      state.setBoardState,
+      state.updateTodoInDB,
+    ]
+  );
 
   useEffect(() => {
     // get board
@@ -90,7 +87,7 @@ function Board() {
         todos: finishTodos,
       });
 
-      // updateTodoInDB(todoMoved, finishCol.id)
+      updateTodoInDB(todoMoved, finishCol.id);
 
       setBoardState({ ...board, columns: newColumns });
     }
