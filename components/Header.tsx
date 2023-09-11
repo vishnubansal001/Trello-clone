@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
+import fetchSuggestion from "@/lib/fetchSuggestion";
 
 function Header() {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
@@ -12,6 +13,23 @@ function Header() {
     state.searchString,
     state.setSearchString,
   ]);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [suggestion, setSuggestion] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (board.columns.size === 0) return;
+    setLoading(true);
+    const fetchSuggestionFunc = async () => {
+      const suggestion = await fetchSuggestion(board);
+      setSuggestion(suggestion);
+      setLoading(false);
+    };
+
+    setTimeout(() => {
+      fetchSuggestionFunc();
+    }, 3000);
+  }, [board]);
   return (
     <header>
       <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
@@ -47,8 +65,26 @@ function Header() {
 
       <div className="flex items-center justify-center py-2 px-5 md:py-5">
         <p className="flex p-5 items-center text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#0055D1]">
-          <UserCircleIcon className="inline-block h-10 w-10 text-[#0055d1] mr-1" />
-          GPT is summarising your tasks for the day ...
+          <UserCircleIcon
+            className={`inline-block h-10 w-10 text-[#0055d1] mr-1  ${
+              loading && "animate-spin"
+            }`}
+          />
+          {suggestion.length !== 0
+            ? `You have ${
+                suggestion[0] === 1
+                  ? "1 task to do"
+                  : `${suggestion[0]} tasks to do`
+              }, ${
+                suggestion[1] === 1
+                  ? "1 task in progress"
+                  : `${suggestion[1]} tasks in progress `
+              } and ${
+                suggestion[2] === 1
+                  ? "1 task done"
+                  : `${suggestion[2]} tasks done`
+              }`
+            : "We are summarising your tasks for the day"}
         </p>
       </div>
     </header>
