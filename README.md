@@ -1,34 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Trello Clone
 
-## Getting Started
+This project is a functional clone of the popular Trello board using Next.js, Appwrite, GPT-3.5 from OpenAI, Headless UI, Zustand, TypeScript, Drag and Drop, and Tailwind CSS.
 
-First, run the development server:
+![Trello Clone Screenshot](/path/to/screenshot.png)
+
+## Table of Contents
+
+- [Demo](#demo)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Demo
+
+You can find a live demo of this project [here](https://example.com).
+
+## Features
+
+- Create, edit, and delete boards, lists, and cards
+- Collaborative editing with real-time updates
+- Use GPT-3.5 for smart suggestions and content generation
+- Drag and drop functionality for easy organization
+- Cloud data storage using Appwrite
+
+## Technologies
+
+- [Next.js](https://nextjs.org/)
+- [Appwrite](https://appwrite.io/)
+- [GPT-3.5](https://openai.com/)
+- [Headless UI](https://headlessui.dev/)
+- [Zustand](https://zustand.surge.sh/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Drag and Drop](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# Clone the repository:
+git clone https://github.com/vishnubansal001/Trello-clone.git
+
+# Move into the project directory:
+cd Trello-clone
+
+# Install dependencies:
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Usage
+```
+# Start the development server:
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Configuration
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Appwrite Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create an account on Appwrite.
+2. Create a new project and note down the API endpoint and project ID.
+3. Set up authentication, database, and storage services in your project.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## GPT-3.5 Setup
 
-## Deploy on Vercel
+1. Sign up for an API key at OpenAI.
+2. Replace `YOUR_API_KEY` in `src/services/openai.ts` with your actual API key.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions are welcome! Please refer to the Contribution Guidelines for details.
