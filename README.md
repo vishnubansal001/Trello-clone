@@ -2,8 +2,6 @@
 
 This project is a functional clone of the popular Trello board using Next.js, Appwrite, GPT-3.5 from OpenAI, Headless UI, Zustand, TypeScript, Drag and Drop, and Tailwind CSS.
 
-![Trello Clone Screenshot](/path/to/screenshot.png)
-
 ## Table of Contents
 
 - [Demo](#demo)
